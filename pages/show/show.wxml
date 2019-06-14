@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="page-body" style="background-image: url('data:image/png;base64,{{imgData}}');background-repeat:no-repeat;background-size: 100%;">
+    <view class="card">
+      <view class="page-section page-section-spacing swiper">
+        <swiper
+          indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+          interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+          <block wx:for="{{carInfo.result}}" wx:key="index">
+            <swiper-item>
+              <view class="swiper-item {{item}}">
+                <!-- <view>照片</view>
+                <view class="name">一串红</view>
+                <p class="abstract">一串红，又称爆仗红，项亚蕻，为唇形科鼠尾草属植物。花序修长，色红鲜艳，花期又长，适应性强，为中国城...</p> -->
+                <view>
+                  <image class="item-img" wx:if="{{item.baike_info.image_url}}" mode="widthFix" src="{{item.baike_info.image_url}}"></image>
+                </view>
+                <view>车型：{{item.name}}；年份：{{item.year}}</view>
+                <view wx:if="{{item.baike_info}}">
+                  <view class="abstract">{{item.baike_info.description}}</view>
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view>

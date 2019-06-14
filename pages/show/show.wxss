@@ -1,0 +1,54 @@
+.container{
+  height: 100%;
+  background-color: #aaa;
+  overflow: hidden;
+}
+.page-body{
+  background-color: #ddd;
+  position: relative;
+  height:100%;
+}
+
+.abstract{
+  font-size: 28rpx;
+}
+swiper{
+  height: 90%;
+}
+.swiper{
+  height: 95%;
+  padding-top:30rpx;
+  padding-left:100rpx;
+  padding-right:100rpx;
+  padding-bottom: 0rpx;
+}
+.card {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 55%;
+}
+.swiper-item{
+  text-align: center;
+}
+.item-img{
+  max-width: 100%;
+  width: 150px;
+  height: 100%;
+}
+.abstract{
+  overflow : auto;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 0;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  height: 100px;
+  text-align: left;
+}
+.item-more{
+  text-align: center；
+}

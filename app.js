@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    storage_carimage_key:'camer_car_img'
   }
 })

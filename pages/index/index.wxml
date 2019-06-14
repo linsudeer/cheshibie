@@ -1,17 +1,28 @@
-<view class="page-body">
+<view class="page-body" style="background: url({{background}});background-repeat:no-repeat;background-size: 100% 100%;">
   <view class="page-body-wrapper">
-    <camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
     <view class="btn-area">
-      <button type="primary" bindtap="takePhoto">拍照</button>
+      <button class="camera btn" type="primary" bindtap="takePhoto">拍照识车</button>
+      <p class="album btn" bindtap="chooseImage">从相册选择 ></p>
     </view>
-    <view class="btn-area">
-      <button type="primary" bindtap="startRecord">开始录像</button>
-    </view>
-    <view class="btn-area">
-      <button type="primary" bindtap="stopRecord">结束录像</button>
-    </view>
-    <view class="preview-tips">预览</view>
-    <image wx:if="{{src}}" mode="widthFix" src="{{src}}"></image>
-    <video wx:if="{{videoSrc}}" class="video" src="{{videoSrc}}"></video>
+	<view>
+	<image wx:if="{{imgSrc}}" src="{{imgSrc}}"></image>
+	</view>
+		<view wx:if="{{carInfo}}">
+		<view wx:for="{{carInfo.result}}">
+			<view class="preview-tips">
+				结果{{index+1}}
+				<view>车型：{{item.name}}</view>
+				<view>年份：{{item.year}}</view>
+				<view wx:if="{{item.baike_info}}">
+					<view>百科结果：</view>
+					<view>{{item.baike_info.description}}</view>
+					<view>
+					<image wx:if="{{item.baike_info.image_url}}" mode="widthFix" src="{{item.baike_info.image_url}}"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view wx:else></view>
   </view>
 </view>

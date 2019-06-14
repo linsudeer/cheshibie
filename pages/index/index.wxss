@@ -1,3 +1,8 @@
+.page-body{
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
 .preview-tips {
   margin: 20rpx 0;  
 }
@@ -7,9 +12,28 @@
   width: 100%;
   height: 300px;
 }
+.btn-area{
+  text-align: center;
+  bottom: 30%;
+  position: absolute;
+  left: 33.33%;
+  width: 33.33%;
+}
+.camera{
+  width: 100%;
+  border-radius: 35px;
+  margin-bottom: 15rpx;
+  color: #fff;
+  background-color: #179b16;
+  border-color: #179b16;
+}
+.album {
+  font-size: 14px;
+  color:#fefefe;
+}
 
-img{
-width: 200px; 
-height: 200px; 
-background-color: #eeeeee;
+.bg-img{
+  position: absolute;
+  z-index: -1;
+  height: 100%;
 }
