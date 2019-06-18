@@ -4,10 +4,11 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    var res = wx.getStorageSync(app.globalData.storage_carimage_key) || {}
-    this.getCarInfo(res.imgData)
+    var carimage = wx.getStorageSync(app.globalData.storage_carimage_key) || {}
+    // 获取识别信息
+    this.getCarInfo(carimage.imgData)
     this.setData({
-      imgData:res.imgData,
+      imgData: carimage.imgData,
     })
   },
   data: {
@@ -44,7 +45,7 @@ Page({
     wx.request({
       url: "https://aip.baidubce.com/rest/2.0/image-classify/v1/car",
       data: {
-        access_token: "24.1cd9dc0d227096bbd2ea851bcb78b2b0.2592000.1563082712.282335-16075693",
+        access_token: wx.getStorageSync(app.globalData.baiduApiToken),
         image: img,
         baike_num: 2
       },

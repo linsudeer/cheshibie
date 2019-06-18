@@ -16,8 +16,8 @@
   text-align: center;
   bottom: 30%;
   position: absolute;
-  left: 33.33%;
-  width: 33.33%;
+  left: 25%;
+  width: 50%;
 }
 .camera{
   width: 100%;

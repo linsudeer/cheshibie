@@ -1,15 +1,12 @@
 //app.js
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+
+        this.getBaiduToken()
       }
     })
     // 获取用户信息
@@ -33,8 +30,38 @@ App({
       }
     })
   },
+  getBaiduToken:function(){
+    var that = this
+    var expires = wx.getStorageSync(that.globalData.baiduApiExpires)
+    if (expires && expires > new Date().getTime()){
+      return wx.getStorageSync(that.globalData.baiduApiToken)
+    }
+    wx.request({
+      url: "https://aip.baidubce.com/oauth/2.0/token",
+      data: {
+        grant_type: "client_credentials",
+        client_id: "shybkCT0a8wOds5GGcLxQ2Gd",
+        client_secret: "4nXLgUTND8SsYcwGh1qZKAaShz4zS7av"
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success: function (res) {
+        console.log(res)
+        wx.setStorageSync(that.globalData.baiduApiToken, res.data.access_token)
+        wx.setStorageSync(that.globalData.baiduApiExpires, new Date().getTime()+res.data.expires_in)
+      },
+      fail: function (e) {
+        console.log(e)
+
+      }
+    })
+  },
   globalData: {
     userInfo: null,
-    storage_carimage_key:'camer_car_img'
+    storage_carimage_key:'camer_car_img',
+    baiduApiToken:'baidu_api_token',
+    baiduApiExpires:"baidu_api_expires_in"
   }
 })
