@@ -15,13 +15,20 @@ Page({
       sourceType: ['camera'],
       success: function (res) {
         const tempPath = res.tempFilePaths[0]
-        wx.setStorageSync(app.globalData.storage_carimage_key, tempPath)
-        wx.navigateTo({
-          url: '/pages/show/show',
-          success: function () {
+			  that.fileSysMgr.readFile({filePath: tempPath, encoding: "base64", complete: function (res) {
+        // 组织数据存储到数据缓存中
+        const carImgData = {imgData:res.data, imgPath:tempPath}
+          wx.setStorageSync(app.globalData.storage_carimage_key, carImgData)
+          wx.navigateTo({
+            url: '/pages/show/show',
+            success: function () {
+            }
+          })
+          }, fail: function (errorMsg) {
+			  wx.hideLoading()
+            console.log(errorMsg)
           }
         })
-        
       },
       fail: function (e) {
 
@@ -54,11 +61,6 @@ Page({
 		  success:function(res){
 			  const tempPath = res.tempFilePaths[0]
 			  that.fileSysMgr.readFile({filePath: tempPath, encoding: "base64", complete: function (res) {
-				// 获取识别信息
-				// that.getCarInfo(res.data)
-				// that.setData({
-				//   imgSrc:tempPath
-			  // })
         // 组织数据存储到数据缓存中
         const carImgData = {imgData:res.data, imgPath:tempPath}
           wx.setStorageSync(app.globalData.storage_carimage_key, carImgData)
